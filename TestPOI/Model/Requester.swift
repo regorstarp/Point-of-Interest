@@ -24,8 +24,10 @@ class Requester {
                     let json = JSON(value)
                     for (_, subJson) in json["list"] {
                         //string! puede dar error
-                        let point: PointOfInterest = PointOfInterest(id: subJson["id"].string!, title: subJson["title"].string!, geocoordinates: subJson["geocoordinates"].string!)
-                        pointList.append(point)
+                        if let id = subJson["id"].string, let title = subJson["title"].string, let geocoordinates = subJson["geocoordinates"].string {
+                            let point: PointOfInterest = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates)
+                            pointList.append(point)
+                        }
                     }
                 
                 case .failure(_):
@@ -44,7 +46,12 @@ class Requester {
             case .success(let value):
                 self.result = true
                 let json = JSON(value)
-                point = PointOfInterest(id: json["id"].string!, title: json["title"].string!, geocoordinates: json["geocoordinates"].string!, address: json["address"].string!, transport: json["transport"].string!, email: json["email"].string!, description: json["description"].string!, phone: json["phone"].string!)
+                
+                if let id = json["id"].string, let title = json["title"].string, let geocoordinates = json["geocoordinates"].string, let address = json["address"].string, let transport = json["transport"].string, let email = json["email"].string, let description = json["description"].string, let phone = json["phone"].string {
+                    point = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates, address: address, transport: transport, email: email, description: description, phone: phone)
+                } else {
+                    self.result = false
+                }
                 
             case .failure(_):
                 self.result = false

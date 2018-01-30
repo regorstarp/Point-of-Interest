@@ -73,7 +73,7 @@ class POIListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? POIDetailViewController {
-let pointId: String
+            let pointId: String
             
             if isFiltering() {
                 pointId = "\(filteredPoi[indexPath.row].id)"
@@ -84,11 +84,16 @@ let pointId: String
             requester.requestPointOfInterest(id: pointId) { (result: Bool, point: PointOfInterest) in
                 if result {
                     vc.selectedPOI = point
+                    self.navigationController?.pushViewController(vc, animated: true)
                 } else {
-                    print("error requesting point with id: \(pointId)")
+                    let alert = UIAlertController(title: "Couldn't load the selected point", message: "", preferredStyle: .alert)
+                    
+                    let acceptAction = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(acceptAction)
+                    self.present(alert, animated: true)
                 }
                 MBProgressHUD.hide(for: ((UIApplication.shared.delegate?.window)!)!, animated: true)
-                self.navigationController?.pushViewController(vc, animated: true)
+                
                 
             }
             
