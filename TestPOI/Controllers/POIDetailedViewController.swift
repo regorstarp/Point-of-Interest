@@ -13,6 +13,7 @@ class POIDetailViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var mailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
@@ -57,4 +58,5 @@ class POIDetailViewController: UIViewController {
                                                                   regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+
 }

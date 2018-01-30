@@ -8,4 +8,5 @@ target 'TestPOI' do
   # Pods for TestPOI
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'MBProgressHUD'
 end

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class POIListTableViewController: UITableViewController {
     
@@ -21,15 +22,18 @@ class POIListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Points of Interest"
-
+        MBProgressHUD.showAdded(to: ((UIApplication.shared.delegate?.window)!)!, animated: true)
+        
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Points"
+        searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.searchController = searchController
-
+        
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         navigationController?.navigationBar.prefersLargeTitles = true
+        
         initializeThePoiList()
     }
 
@@ -39,6 +43,8 @@ class POIListTableViewController: UITableViewController {
             if result {
                 self.poiList = list
                 self.tableView.reloadData()
+                //loadingNotification.hide(animated: true)
+                MBProgressHUD.hide(for: ((UIApplication.shared.delegate?.window)!)!, animated: true)
             }
         }
     }
@@ -67,20 +73,23 @@ class POIListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? POIDetailViewController {
-            let pointId: String
+let pointId: String
             
             if isFiltering() {
                 pointId = "\(filteredPoi[indexPath.row].id)"
             } else {
                 pointId = "\(indexPath.row + 1)"
             }
+            MBProgressHUD.showAdded(to: ((UIApplication.shared.delegate?.window)!)!, animated: true)
             requester.requestPointOfInterest(id: pointId) { (result: Bool, point: PointOfInterest) in
                 if result {
                     vc.selectedPOI = point
                 } else {
                     print("error requesting point with id: \(pointId)")
                 }
+                MBProgressHUD.hide(for: ((UIApplication.shared.delegate?.window)!)!, animated: true)
                 self.navigationController?.pushViewController(vc, animated: true)
+                
             }
             
         }
@@ -113,3 +122,4 @@ extension POIListTableViewController: UISearchResultsUpdating {
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }
+
