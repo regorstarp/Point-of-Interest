@@ -44,7 +44,6 @@ class POIDetailViewController: UIViewController {
     
     let mailContentLabel: UILabel = {
         let uiLabel = UILabel()
-        uiLabel.text = "Description"
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         return uiLabel
     }()
@@ -59,7 +58,6 @@ class POIDetailViewController: UIViewController {
     
     let phoneContentLabel: UILabel = {
         let uiLabel = UILabel()
-        uiLabel.text = "Description"
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         return uiLabel
     }()
@@ -74,7 +72,6 @@ class POIDetailViewController: UIViewController {
     
     let addressContentLabel: UILabel = {
         let uiLabel = UILabel()
-        uiLabel.text = "Description"
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         return uiLabel
     }()
@@ -89,7 +86,6 @@ class POIDetailViewController: UIViewController {
     
     let transportContentLabel: UILabel = {
         let uiLabel = UILabel()
-        uiLabel.text = "Description"
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         return uiLabel
     }()
@@ -136,9 +132,7 @@ class POIDetailViewController: UIViewController {
 
             view.addSubview(pointMapView)
             setUpLayout()
-            
-           
-//
+
         } else {
             
             let alert = UIAlertController(title: "Couldn't load the selected point", message: "", preferredStyle: .alert)
@@ -155,12 +149,12 @@ class POIDetailViewController: UIViewController {
     func setUpLayout() {
         
         descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        descriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        descriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor).isActive = true
-        descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
         let caracteristics = [mailLabel, mailContentLabel, phoneLabel, phoneContentLabel, addressLabel, addressContentLabel, transportLabel, transportContentLabel]
         
@@ -171,6 +165,9 @@ class POIDetailViewController: UIViewController {
             label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
             label.heightAnchor.constraint(equalToConstant: 30).isActive = true
             label.adjustsFontSizeToFitWidth = true
+            label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+            label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+            
             if previous != nil {
                 label.topAnchor.constraint(equalTo: previous.bottomAnchor).isActive = true
             } else {

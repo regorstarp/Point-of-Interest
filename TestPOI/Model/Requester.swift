@@ -23,10 +23,11 @@ class Requester {
                     self.result = true
                     let json = JSON(value)
                     for (_, subJson) in json["list"] {
-                        //string! puede dar error
                         if let id = subJson["id"].string, let title = subJson["title"].string, let geocoordinates = subJson["geocoordinates"].string {
                             let point: PointOfInterest = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates)
                             pointList.append(point)
+                        } else {
+                            self.result = false
                         }
                     }
                 
