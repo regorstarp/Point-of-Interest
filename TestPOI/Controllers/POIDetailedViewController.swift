@@ -150,7 +150,7 @@ class POIDetailViewController: UIViewController {
         
         descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         descriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
         descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor).isActive = true
         descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
@@ -162,7 +162,7 @@ class POIDetailViewController: UIViewController {
         
         for label in caracteristics {
             
-            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            label.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
             label.heightAnchor.constraint(equalToConstant: 30).isActive = true
             label.adjustsFontSizeToFitWidth = true
             label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
