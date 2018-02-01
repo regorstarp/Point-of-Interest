@@ -43,7 +43,6 @@ class POIListTableViewController: UITableViewController {
             if result {
                 self.poiList = list
                 self.tableView.reloadData()
-                //loadingNotification.hide(animated: true)
                 MBProgressHUD.hide(for: ((UIApplication.shared.delegate?.window)!)!, animated: true)
             }
         }

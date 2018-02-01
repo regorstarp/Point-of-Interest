@@ -16,85 +16,19 @@ class POIDetailViewController: UIViewController {
     let regionRadius: CLLocationDistance = 1000
     let newPin = MKPointAnnotation()
     
-    let descriptionLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.text = "Description"
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        uiLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        return uiLabel
-    }()
+    //IBOutlets
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var mailLabel: UILabel!
+    @IBOutlet weak var mailContentLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
     
-    let descriptionTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textAlignment = .justified
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        textView.font = UIFont.systemFont(ofSize: 16.0)
-        return textView
-    }()
-    
-    let mailLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.text = "Mail"
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        uiLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        return uiLabel
-    }()
-    
-    let mailContentLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        return uiLabel
-    }()
-    
-    let phoneLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.text = "Phone"
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        uiLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        return uiLabel
-    }()
-    
-    let phoneContentLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        return uiLabel
-    }()
-    
-    let addressLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.text = "Address"
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        uiLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        return uiLabel
-    }()
-    
-    let addressContentLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        return uiLabel
-    }()
-    
-    let transportLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.text = "Transport"
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        uiLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        return uiLabel
-    }()
-    
-    let transportContentLabel: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        return uiLabel
-    }()
-    
-    let pointMapView : MKMapView = {
-        let mapView = MKMapView()
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        return mapView
-    }()
+    @IBOutlet weak var phoneContentLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var addressContentLabel: UILabel!
+    @IBOutlet weak var transportLabel: UILabel!
+    @IBOutlet weak var transportContentLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
     
     
     override func viewDidLoad() {
@@ -103,22 +37,21 @@ class POIDetailViewController: UIViewController {
         
         if let point = selectedPOI {
             title = point.title
+            
+            descriptionTextView.isEditable = false
+            descriptionTextView.isScrollEnabled = false
+            
+            descriptionLabel.text = "Description"
+            mailLabel.text = "Mail"
+            phoneLabel.text = "Phone"
+            addressLabel.text = "Address"
+            transportLabel.text = "Transport"
             descriptionTextView.text = point.description
             mailContentLabel.text = point.email
             phoneContentLabel.text = point.phone
             addressContentLabel.text = point.address
             transportContentLabel.text = point.transport
             
-            view.addSubview(descriptionLabel)
-            view.addSubview(descriptionTextView)
-            view.addSubview(mailLabel)
-            view.addSubview(mailContentLabel)
-            view.addSubview(phoneLabel)
-            view.addSubview(phoneContentLabel)
-            view.addSubview(addressLabel)
-            view.addSubview(addressContentLabel)
-            view.addSubview(transportLabel)
-            view.addSubview(transportContentLabel)
             
             // map set up
             let coordinatesArray = point.geocoordinates.components(separatedBy: ",")
@@ -128,10 +61,7 @@ class POIDetailViewController: UIViewController {
             let initialLocation = CLLocation(latitude: latitude, longitude: longitude)
             centerMapOnLocation(location: initialLocation)
             newPin.coordinate = initialLocation.coordinate
-            pointMapView.addAnnotation(newPin)
-
-            view.addSubview(pointMapView)
-            setUpLayout()
+            mapView.addAnnotation(newPin)
 
         } else {
             
@@ -146,50 +76,10 @@ class POIDetailViewController: UIViewController {
     }
     
     
-    func setUpLayout() {
-        
-        descriptionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        descriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        
-        descriptionTextView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor).isActive = true
-        descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        
-        let caracteristics = [mailLabel, mailContentLabel, phoneLabel, phoneContentLabel, addressLabel, addressContentLabel, transportLabel, transportContentLabel]
-        
-        var previous: UILabel!
-        
-        for label in caracteristics {
-            
-            label.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
-            label.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            label.adjustsFontSizeToFitWidth = true
-            label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-            label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-            
-            if previous != nil {
-                label.topAnchor.constraint(equalTo: previous.bottomAnchor).isActive = true
-            } else {
-                label.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor).isActive = true
-            }
-            
-            previous = label
-        }
-        
-        pointMapView.topAnchor.constraint(equalTo: transportContentLabel.bottomAnchor, constant: 25).isActive = true
-        pointMapView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        pointMapView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        pointMapView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        pointMapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        
-        
-    }
-    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius, regionRadius)
-        pointMapView.setRegion(coordinateRegion, animated: true)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
 
 }
