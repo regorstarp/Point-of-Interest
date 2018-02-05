@@ -8,21 +8,44 @@
 
 /* Begin PBXBuildFile section */
 		26FC9F63A131AAAA80F23992 /* Pods_TestPOI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328C343398BF03817B09027E /* Pods_TestPOI.framework */; };
+		321C351E20285FDF0040A096 /* PoiDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C351720285FDF0040A096 /* PoiDetailBuilder.swift */; };
+		321C351F20285FDF0040A096 /* PoiDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C351820285FDF0040A096 /* PoiDetailInteractor.swift */; };
+		321C352020285FDF0040A096 /* PoiDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C351920285FDF0040A096 /* PoiDetailPresenter.swift */; };
+		321C352120285FDF0040A096 /* PoiDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C351A20285FDF0040A096 /* PoiDetailViewController.swift */; };
+		321C352220285FDF0040A096 /* PoiDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 321C351B20285FDF0040A096 /* PoiDetailViewController.xib */; };
+		321C352320285FDF0040A096 /* PoiDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C351C20285FDF0040A096 /* PoiDetailViewModel.swift */; };
+		321C352420285FDF0040A096 /* PoiDetailWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C351D20285FDF0040A096 /* PoiDetailWireframe.swift */; };
 		322C67B4201603DB002982B2 /* POIListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C67B3201603DB002982B2 /* POIListTableViewController.swift */; };
 		322C67B620160409002982B2 /* POIDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C67B520160409002982B2 /* POIDetailedViewController.swift */; };
 		322C67C620172950002982B2 /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C67C520172950002982B2 /* Requester.swift */; };
+		3286AF1320285B7800DBF63B /* mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286AF1220285B7800DBF63B /* mapper.swift */; };
 		328A89D72015D78800B7A8D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A89D62015D78800B7A8D7 /* AppDelegate.swift */; };
 		328A89DC2015D78800B7A8D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328A89DA2015D78800B7A8D7 /* Main.storyboard */; };
 		328A89DE2015D78800B7A8D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328A89DD2015D78800B7A8D7 /* Assets.xcassets */; };
 		328A89E12015D78800B7A8D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328A89DF2015D78800B7A8D7 /* LaunchScreen.storyboard */; };
 		32A18DCD2015E26F008704A7 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A18DCC2015E26F008704A7 /* PointOfInterest.swift */; };
+		32F9BDCD20285328006A9A46 /* PoiListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9BDC620285328006A9A46 /* PoiListBuilder.swift */; };
+		32F9BDCE20285328006A9A46 /* PoiListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9BDC720285328006A9A46 /* PoiListInteractor.swift */; };
+		32F9BDCF20285328006A9A46 /* PoiListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9BDC820285328006A9A46 /* PoiListPresenter.swift */; };
+		32F9BDD020285328006A9A46 /* PoiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9BDC920285328006A9A46 /* PoiListView.swift */; };
+		32F9BDD120285328006A9A46 /* PoiListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F9BDCA20285328006A9A46 /* PoiListView.xib */; };
+		32F9BDD220285328006A9A46 /* PoiListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9BDCB20285328006A9A46 /* PoiListViewModel.swift */; };
+		32F9BDD320285328006A9A46 /* PoiListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9BDCC20285328006A9A46 /* PoiListWireframe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0DAE85200422A026ADE5C341 /* Pods-TestPOI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPOI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestPOI/Pods-TestPOI.debug.xcconfig"; sourceTree = "<group>"; };
+		321C351720285FDF0040A096 /* PoiDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiDetailBuilder.swift; sourceTree = "<group>"; };
+		321C351820285FDF0040A096 /* PoiDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiDetailInteractor.swift; sourceTree = "<group>"; };
+		321C351920285FDF0040A096 /* PoiDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiDetailPresenter.swift; sourceTree = "<group>"; };
+		321C351A20285FDF0040A096 /* PoiDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiDetailViewController.swift; sourceTree = "<group>"; };
+		321C351B20285FDF0040A096 /* PoiDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoiDetailViewController.xib; sourceTree = "<group>"; };
+		321C351C20285FDF0040A096 /* PoiDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiDetailViewModel.swift; sourceTree = "<group>"; };
+		321C351D20285FDF0040A096 /* PoiDetailWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiDetailWireframe.swift; sourceTree = "<group>"; };
 		322C67B3201603DB002982B2 /* POIListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIListTableViewController.swift; sourceTree = "<group>"; };
 		322C67B520160409002982B2 /* POIDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIDetailedViewController.swift; sourceTree = "<group>"; };
 		322C67C520172950002982B2 /* Requester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
+		3286AF1220285B7800DBF63B /* mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapper.swift; sourceTree = "<group>"; };
 		328A89D32015D78800B7A8D7 /* TestPOI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPOI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		328A89D62015D78800B7A8D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		328A89DB2015D78800B7A8D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -31,6 +54,13 @@
 		328A89E22015D78800B7A8D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		328C343398BF03817B09027E /* Pods_TestPOI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestPOI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A18DCC2015E26F008704A7 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
+		32F9BDC620285328006A9A46 /* PoiListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiListBuilder.swift; sourceTree = "<group>"; };
+		32F9BDC720285328006A9A46 /* PoiListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiListInteractor.swift; sourceTree = "<group>"; };
+		32F9BDC820285328006A9A46 /* PoiListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiListPresenter.swift; sourceTree = "<group>"; };
+		32F9BDC920285328006A9A46 /* PoiListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiListView.swift; sourceTree = "<group>"; };
+		32F9BDCA20285328006A9A46 /* PoiListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoiListView.xib; sourceTree = "<group>"; };
+		32F9BDCB20285328006A9A46 /* PoiListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiListViewModel.swift; sourceTree = "<group>"; };
+		32F9BDCC20285328006A9A46 /* PoiListWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiListWireframe.swift; sourceTree = "<group>"; };
 		C6367FB0EAE09F67AC5EDC14 /* Pods-TestPOI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPOI.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestPOI/Pods-TestPOI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +90,7 @@
 			children = (
 				322C67C520172950002982B2 /* Requester.swift */,
 				32A18DCC2015E26F008704A7 /* PointOfInterest.swift */,
+				3286AF1220285B7800DBF63B /* mapper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -71,6 +102,20 @@
 				328A89DF2015D78800B7A8D7 /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		321C351620285DE30040A096 /* PoiDetail */ = {
+			isa = PBXGroup;
+			children = (
+				321C351720285FDF0040A096 /* PoiDetailBuilder.swift */,
+				321C351820285FDF0040A096 /* PoiDetailInteractor.swift */,
+				321C351920285FDF0040A096 /* PoiDetailPresenter.swift */,
+				321C351A20285FDF0040A096 /* PoiDetailViewController.swift */,
+				321C351B20285FDF0040A096 /* PoiDetailViewController.xib */,
+				321C351C20285FDF0040A096 /* PoiDetailViewModel.swift */,
+				321C351D20285FDF0040A096 /* PoiDetailWireframe.swift */,
+			);
+			path = PoiDetail;
 			sourceTree = "<group>";
 		};
 		328A89CA2015D78800B7A8D7 = {
@@ -94,14 +139,30 @@
 		328A89D52015D78800B7A8D7 /* TestPOI */ = {
 			isa = PBXGroup;
 			children = (
+				321C351620285DE30040A096 /* PoiDetail */,
 				320465272019CB2800453A06 /* View */,
 				320465262019CB2000453A06 /* Model */,
 				320465252019CB0000453A06 /* Controllers */,
 				328A89D62015D78800B7A8D7 /* AppDelegate.swift */,
 				328A89DD2015D78800B7A8D7 /* Assets.xcassets */,
 				328A89E22015D78800B7A8D7 /* Info.plist */,
+				32F9BDB520284E99006A9A46 /* PoiList */,
 			);
 			path = TestPOI;
+			sourceTree = "<group>";
+		};
+		32F9BDB520284E99006A9A46 /* PoiList */ = {
+			isa = PBXGroup;
+			children = (
+				32F9BDC620285328006A9A46 /* PoiListBuilder.swift */,
+				32F9BDC720285328006A9A46 /* PoiListInteractor.swift */,
+				32F9BDC820285328006A9A46 /* PoiListPresenter.swift */,
+				32F9BDC920285328006A9A46 /* PoiListView.swift */,
+				32F9BDCA20285328006A9A46 /* PoiListView.xib */,
+				32F9BDCB20285328006A9A46 /* PoiListViewModel.swift */,
+				32F9BDCC20285328006A9A46 /* PoiListWireframe.swift */,
+			);
+			path = PoiList;
 			sourceTree = "<group>";
 		};
 		6572B97ECF774D5931094D38 /* Frameworks */ = {
@@ -185,7 +246,9 @@
 			files = (
 				328A89E12015D78800B7A8D7 /* LaunchScreen.storyboard in Resources */,
 				328A89DE2015D78800B7A8D7 /* Assets.xcassets in Resources */,
+				321C352220285FDF0040A096 /* PoiDetailViewController.xib in Resources */,
 				328A89DC2015D78800B7A8D7 /* Main.storyboard in Resources */,
+				32F9BDD120285328006A9A46 /* PoiListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,12 +298,18 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/T21Mapping/T21Mapping.framework",
+				"${BUILT_PRODUCTS_DIR}/T21PullToRefreshController/T21PullToRefreshController.framework",
+				"${BUILT_PRODUCTS_DIR}/T21TableViewDataSource/T21TableViewDataSource.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/T21Mapping.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/T21PullToRefreshController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/T21TableViewDataSource.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -255,10 +324,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				322C67C620172950002982B2 /* Requester.swift in Sources */,
+				32F9BDD220285328006A9A46 /* PoiListViewModel.swift in Sources */,
+				321C352420285FDF0040A096 /* PoiDetailWireframe.swift in Sources */,
+				321C352120285FDF0040A096 /* PoiDetailViewController.swift in Sources */,
+				321C351F20285FDF0040A096 /* PoiDetailInteractor.swift in Sources */,
+				32F9BDD020285328006A9A46 /* PoiListView.swift in Sources */,
+				32F9BDCE20285328006A9A46 /* PoiListInteractor.swift in Sources */,
 				322C67B4201603DB002982B2 /* POIListTableViewController.swift in Sources */,
 				32A18DCD2015E26F008704A7 /* PointOfInterest.swift in Sources */,
+				321C352320285FDF0040A096 /* PoiDetailViewModel.swift in Sources */,
+				321C351E20285FDF0040A096 /* PoiDetailBuilder.swift in Sources */,
 				322C67B620160409002982B2 /* POIDetailedViewController.swift in Sources */,
+				321C352020285FDF0040A096 /* PoiDetailPresenter.swift in Sources */,
+				32F9BDCF20285328006A9A46 /* PoiListPresenter.swift in Sources */,
+				3286AF1320285B7800DBF63B /* mapper.swift in Sources */,
+				32F9BDCD20285328006A9A46 /* PoiListBuilder.swift in Sources */,
 				328A89D72015D78800B7A8D7 /* AppDelegate.swift in Sources */,
+				32F9BDD320285328006A9A46 /* PoiListWireframe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,6 @@
+framework module T21PullToRefreshController {
+  umbrella header "T21PullToRefreshController-umbrella.h"
+
+  export *
+  module * { export * }
+}
