@@ -26,6 +26,7 @@ class PoiDetailInteractor: PoiDetailRequestHandler
     let poiId: String
     
     init ( _ poiId: String) {
+        print("init poidetailinteractor with id: \(poiId)")
         self.poiId = poiId
     }
     //MARK: - RequestHandler Protocol
@@ -35,11 +36,13 @@ class PoiDetailInteractor: PoiDetailRequestHandler
     
     func requestPointOfInterest( _ completion: @escaping ( _ entity: PointOfInterest) -> Void) {
         //Dispatch es per concurrencia?
+        print("req poi")
         self.requester.requestPointOfInterest(id: self.poiId) { (result: Bool, point: PointOfInterest) in
             if result {
+                print("point requested correctly")
                 completion(point)
             } else {
-                //
+                print("error requesting point")
             }
         }
     }

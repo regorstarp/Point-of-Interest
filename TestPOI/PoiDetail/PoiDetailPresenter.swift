@@ -41,6 +41,7 @@ class PoiDetailPresenter: PoiDetailEventHandler, PoiDetailResponseHandler {
     
     //MARK: - EventHandler Protocol
     func handleViewWillAppear() {
+        print("handleViewWillAppear")
         interactor.requestPointOfInterest({ [weak self] (item: PointOfInterest) in
             self?.viewModel.id = item.id
             self?.viewModel.title = item.title
@@ -50,8 +51,6 @@ class PoiDetailPresenter: PoiDetailEventHandler, PoiDetailResponseHandler {
             self?.viewModel.phone = item.phone
             self?.viewModel.address = item.address
             self?.viewModel.transport = item.transport
-            print(self?.viewModel.id)
-            print(self?.viewModel.title)
         })
     }
     
@@ -60,7 +59,6 @@ class PoiDetailPresenter: PoiDetailEventHandler, PoiDetailResponseHandler {
     }
     
     //MARK: - ResponseHandler Protocol
-    
     // func somethingRequestWillStart(){}
     // func somethingRequestDidStart(){}
     // func somethingRequestWillProgress(){}

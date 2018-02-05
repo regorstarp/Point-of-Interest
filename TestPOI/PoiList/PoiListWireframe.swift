@@ -10,17 +10,21 @@ import UIKit
 
 
 // MARK: - Protocol to be defined at Wireframe
-protocol PoiListNavigationHandler: class {
+
+protocol PoiListNavigationHandler: class
+{
     // Include methods to present or dismiss
     func pushPoiDetailView( _ poiID: String)
 }
 
-class PoiListWireframe {
+// MARK: - Wireframe Class must implement NavigationHandler Protocol to handle Presenter Navigation requests
+class PoiListWireframe: PoiListNavigationHandler
+{
     weak var viewController: PoiListView?
     
-    public func pushItemDetailView( _ poiID: String) {
+    func pushPoiDetailView(_ poiID: String) {
         let vc = PoiDetailBuilder.build(poiID)
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
+    
 }
-

@@ -69,8 +69,12 @@ class PoiListPresenter: PoiListEventHandler, PoiListResponseHandler
         }
         
         dataSource.didSelectRowFunction = { [weak self] (tableView,indexPath,item) in
-            let viewModel = item.value as! PoiListCellViewModel
-            self?.wireframe?.pushPoiDetailView(viewModel.id)
+            guard let strongSelf = self, let viewModel = item.value as? PoiListCellViewModel else {
+                return
+            }
+            
+            print("ListItemViewModel pressed: \(viewModel.title)")
+            strongSelf.wireframe.pushPoiDetailView(viewModel.id)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
