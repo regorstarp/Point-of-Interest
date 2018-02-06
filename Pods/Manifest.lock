@@ -1,9 +1,15 @@
 PODS:
   - Alamofire (4.6.0)
   - MBProgressHUD (1.1.0)
+  - RxCocoa (4.1.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.1)
   - SwiftyJSON (4.0.0)
   - T21Mapping (1.0.4)
   - T21PullToRefreshController (2.0.0)
+  - T21RxAdditions (1.0.1):
+    - RxCocoa
+    - RxSwift
   - T21TableViewDataSource (1.1.2)
 
 DEPENDENCIES:
@@ -12,16 +18,20 @@ DEPENDENCIES:
   - SwiftyJSON
   - T21Mapping
   - T21PullToRefreshController
+  - T21RxAdditions
   - T21TableViewDataSource
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  RxCocoa: fd0862fd2df95fa55562ad28ffd2522c25eb4a85
+  RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   T21Mapping: 0f93cff2ecd699637ab6b7ae072100e03bb5a3a2
   T21PullToRefreshController: 5a6fdad037bd2df7f2f6121ff44744c763271ab2
+  T21RxAdditions: 35360b7e2eb3dd806a01cab9035ffa9558c805f3
   T21TableViewDataSource: d769af03060e351ffe2ed9f9caf0ce612b91ccf0
 
-PODFILE CHECKSUM: 8fc3e3a504e15547737b4c307229872c8ea87347
+PODFILE CHECKSUM: ce2d2c3ae1ca934ed9e0f289fcbd835e59c5b49a
 
 COCOAPODS: 1.4.0

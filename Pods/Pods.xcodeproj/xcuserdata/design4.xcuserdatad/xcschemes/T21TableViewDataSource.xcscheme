@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6DC995BF027565874600453FB35B761B'
+               BlueprintIdentifier = '4154CAF2B43BF61260E17AB8FE91F0CB'
                BlueprintName = 'T21TableViewDataSource'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'T21TableViewDataSource.framework'>

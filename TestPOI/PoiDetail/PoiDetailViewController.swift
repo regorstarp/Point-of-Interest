@@ -9,6 +9,7 @@
 
 import UIKit
 import MapKit
+import T21RxAdditions
 
 // MARK: - Protocol to be defined at ViewController
 protocol PoiDetailViewUpdatesHandler: class
@@ -53,19 +54,35 @@ class PoiDetailViewController: UIViewController, PoiDetailViewUpdatesHandler
     }
     
     func configureBindings() {
-        print("configure bindings")
-        print("description \(viewModel.description)")
         //Add the ViewModel bindings here ...
+        
         descriptionLabel.text = "Description"
-        descriptionTextView.text = viewModel.description
+        descriptionTextView.isEditable = false
+        descriptionTextView.isScrollEnabled = false
+        viewModel.description => descriptionTextView!.rx.text
         mailLabel.text = "Mail"
-        mailContentLabel.text = viewModel.email
+        viewModel.email => mailContentLabel!.rx.text
         phoneLabel.text = "Phone"
-        phoneContentLabel.text = viewModel.phone
+        viewModel.phone => phoneContentLabel!.rx.text
         addressLabel.text = "Address"
-        addressContentLabel.text = viewModel.address
+        viewModel.address => addressContentLabel!.rx.text
         transportLabel.text = "Transport"
-        transportContentLabel.text = viewModel.transport
+        viewModel.transport => transportContentLabel!.rx.text
+        
+        
+//        bindOnNext(viewModel.phone) { [weak self] (phone) -> Void in
+//            if !phone.isEmpty, phone != "undefined" {
+//                self?.phoneLabel?.text = "Phone"
+//                self?.phoneLabel?.isHidden = false
+//                self?.phoneContentLabel?.isHidden = false
+//                self?.phoneContentLabel?.text = phone
+//            } else {
+//                self?.phoneLabel?.isHidden = true
+//                self?.phoneContentLabel?.isHidden = true
+//            }
+//        }
+//        descriptionTextView.text = viewModel.description
+
         
 //        // map set up
 //        let coordinatesArray = viewModel.geocoordinates.components(separatedBy: ",")

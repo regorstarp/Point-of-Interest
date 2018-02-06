@@ -16,5 +16,6 @@ target 'TestPOI' do
   pod 'T21TableViewDataSource'
   pod 'T21PullToRefreshController'
   pod 'T21Mapping'
+  pod 'T21RxAdditions'
 
 end

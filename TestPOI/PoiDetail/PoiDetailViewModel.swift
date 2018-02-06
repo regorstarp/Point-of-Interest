@@ -8,15 +8,16 @@
 //
 
 import Foundation
+import RxSwift
 
 struct PoiDetailViewModel
 {
-    var id: String = ""
-    var title: String = ""
-    var geocoordinates: String = ""
-    var address: String = ""
-    var transport: String = ""
-    var email: String = ""
-    var description: String = ""
-    var phone: String = ""
+    let id = Variable<String>("")
+    let title = Variable<String>("")
+    let geocoordinates = Variable<String>("")
+    let address = Variable<String>("")
+    let transport = Variable<String>("")
+    let email = Variable<String>("")
+    let description = Variable<String>("")
+    let phone = Variable<String>("")
 }

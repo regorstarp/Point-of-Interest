@@ -136,17 +136,23 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/T21Mapping/T21Mapping.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/T21PullToRefreshController/T21PullToRefreshController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/T21RxAdditions/T21RxAdditions.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/T21TableViewDataSource/T21TableViewDataSource.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/T21Mapping/T21Mapping.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/T21PullToRefreshController/T21PullToRefreshController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/T21RxAdditions/T21RxAdditions.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/T21TableViewDataSource/T21TableViewDataSource.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

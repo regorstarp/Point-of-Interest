@@ -40,7 +40,6 @@ class PoiListView: UIViewController, PoiListViewUpdatesHandler
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBindings()
-
         _ = self.tableView?.addPullToRefresh(refreshBlock: { () in
             self.presenter.viewDidPullToRefresh()
         })

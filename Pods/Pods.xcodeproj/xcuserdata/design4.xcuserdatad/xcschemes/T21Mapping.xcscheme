@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '10649A096191E4DCDED3E0B1920C92CB'
+               BlueprintIdentifier = 'A7BE52D949B319049789710979279782'
                BlueprintName = 'T21Mapping'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'T21Mapping.framework'>

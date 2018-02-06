@@ -41,16 +41,15 @@ class PoiDetailPresenter: PoiDetailEventHandler, PoiDetailResponseHandler {
     
     //MARK: - EventHandler Protocol
     func handleViewWillAppear() {
-        print("handleViewWillAppear")
         interactor.requestPointOfInterest({ [weak self] (item: PointOfInterest) in
-            self?.viewModel.id = item.id
-            self?.viewModel.title = item.title
-            self?.viewModel.description = item.description
-            self?.viewModel.geocoordinates = item.geocoordinates
-            self?.viewModel.email = item.email
-            self?.viewModel.phone = item.phone
-            self?.viewModel.address = item.address
-            self?.viewModel.transport = item.transport
+            self?.viewModel.id.value = item.id
+            self?.viewModel.title.value = item.title
+            self?.viewModel.description.value = item.description
+            self?.viewModel.geocoordinates.value = item.geocoordinates
+            self?.viewModel.email.value = item.email
+            self?.viewModel.phone.value = item.phone
+            self?.viewModel.address.value = item.address
+            self?.viewModel.transport.value = item.transport
         })
     }
     

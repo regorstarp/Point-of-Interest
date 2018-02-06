@@ -50,7 +50,6 @@ class Requester {
                 
                 if let id = json["id"].string, let title = json["title"].string, let geocoordinates = json["geocoordinates"].string, let address = json["address"].string, let transport = json["transport"].string, let email = json["email"].string, let description = json["description"].string, let phone = json["phone"].string {
                     point = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates, address: address, transport: transport, email: email, description: description, phone: phone)
-                    print(point.description)
                 } else {
                     self.result = false
                 }
