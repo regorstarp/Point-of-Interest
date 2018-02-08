@@ -114,6 +114,10 @@ open class TableViewDataSource<ItemType> : NSObject, UITableViewDataSource, UITa
         })
     }
     
+    public func removeAll() {
+        self.removeItems(self.dataSource.items)
+    }
+    
     public func removeItems(_ items: [ItemType], _ onCompletion: @escaping () -> () = { () -> () in }) {
         dataSource.removeItems(items,{ () -> () in
             if let t = self.tableView {

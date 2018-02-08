@@ -17,6 +17,7 @@ protocol PoiListEventHandler: class
     func handleViewWillAppearEvent()
     func handleViewWillDisappearEvent()
     func viewDidPullToRefresh()
+    func viewDidRequestFilter(_ text: String)
 }
 
 protocol PoiListResponseHandler: class
@@ -31,6 +32,7 @@ protocol PoiListResponseHandler: class
     
     func itemsRequestDidStart()
     func itemsRequestDidFinish( _ result: [PointOfInterest])
+    func itemsFilteringDidFinish(_ result: [PoiListCellViewModel])
 }
 
 class PoiListPresenter: PoiListEventHandler, PoiListResponseHandler
@@ -117,6 +119,21 @@ class PoiListPresenter: PoiListEventHandler, PoiListResponseHandler
         }
         self.dataSource.addItems(rows)
         self.viewController?.animatePullToRefresh(false)
+    }
+    
+    
+    func viewDidRequestFilter(_ text: String) {
+        print("presenter request filter with viewmodel count = \(viewModel.items.count)")
+        self.interactor.filterItems(text, viewModel)
+    }
+    
+    func itemsFilteringDidFinish(_ result: [PoiListCellViewModel]) {
+        
+        self.dataSource.removeAll()
+        let rows = result.map { (result) -> DataSourceItem in
+            return DataSourceItem(result, result.title)
+        }
+        self.dataSource.addItems(rows)
     }
     
     //MARK: Private

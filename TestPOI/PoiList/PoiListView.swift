@@ -10,6 +10,9 @@
 import Foundation
 import UIKit
 import T21PullToRefreshController // pod 'T21PullToRefreshController'
+import RxCocoa
+import RxSwift
+
 
 // MARK: - Protocol to be defined at ViewController
 
@@ -22,6 +25,7 @@ protocol PoiListViewUpdatesHandler: class
 
 class PoiListView: UIViewController, PoiListViewUpdatesHandler
 {
+    let searchController = UISearchController(searchResultsController: nil)
     //MARK: VIPER relationships
     
     var presenter: PoiListEventHandler!
@@ -40,6 +44,7 @@ class PoiListView: UIViewController, PoiListViewUpdatesHandler
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBindings()
+        configureSearchBar()
         _ = self.tableView?.addPullToRefresh(refreshBlock: { () in
             self.presenter.viewDidPullToRefresh()
         })
@@ -71,4 +76,31 @@ class PoiListView: UIViewController, PoiListViewUpdatesHandler
         //Add the ViewModel bindings here ...
     }
     
+    func configureSearchBar() {
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Points"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+}
+
+extension PoiListView: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+        print("presenter.viewDidRequestFilter(\(searchController.searchBar.text!))")
+        presenter.viewDidRequestFilter(searchController.searchBar.text!)
+        
+    }
 }

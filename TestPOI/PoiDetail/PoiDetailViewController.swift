@@ -28,10 +28,15 @@ class PoiDetailViewController: UIViewController, PoiDetailViewUpdatesHandler
         return presenter.viewModel
     }
     
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 200
     let newPin = MKPointAnnotation()
     
     //MARK: - IBOutlets
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var stackView: UIStackView!
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var mailLabel: UILabel!
@@ -70,29 +75,28 @@ class PoiDetailViewController: UIViewController, PoiDetailViewUpdatesHandler
         viewModel.transport => transportContentLabel!.rx.text
         
         
-//        bindOnNext(viewModel.phone) { [weak self] (phone) -> Void in
-//            if !phone.isEmpty, phone != "undefined" {
-//                self?.phoneLabel?.text = "Phone"
-//                self?.phoneLabel?.isHidden = false
-//                self?.phoneContentLabel?.isHidden = false
-//                self?.phoneContentLabel?.text = phone
-//            } else {
-//                self?.phoneLabel?.isHidden = true
-//                self?.phoneContentLabel?.isHidden = true
-//            }
-//        }
-//        descriptionTextView.text = viewModel.description
+        bindOnNext(viewModel.title) { [weak self] (title) -> Void in
+            self?.title = title
+        }
+        
+        bindOnNext(viewModel.geocoordinates) { [weak self] (geocoordinates) -> Void in
+            if !geocoordinates.isEmpty {
+                if let coordinatesArray = self?.viewModel.geocoordinates.value.components(separatedBy: ",") {
+                    let latitude = (coordinatesArray[0] as NSString).doubleValue
+                    let longitude = (coordinatesArray[1] as NSString).doubleValue
+                    // set initial location
+                    let initialLocation = CLLocation(latitude: latitude, longitude: longitude)
+                    self?.centerMapOnLocation(location: initialLocation)
+                    self?.newPin.coordinate = initialLocation.coordinate
+                    self?.mapView.addAnnotation((self?.newPin)!)
+                }
+                
+            }
+            
+
+        }
 
         
-//        // map set up
-//        let coordinatesArray = viewModel.geocoordinates.components(separatedBy: ",")
-//        let latitude = (coordinatesArray[0] as NSString).doubleValue
-//        let longitude = (coordinatesArray[1] as NSString).doubleValue
-//        // set initial location
-//        let initialLocation = CLLocation(latitude: latitude, longitude: longitude)
-//        centerMapOnLocation(location: initialLocation)
-//        newPin.coordinate = initialLocation.coordinate
-//        mapView.addAnnotation(newPin)
     }
     
     override func viewWillAppear(_ animated: Bool) {

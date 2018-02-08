@@ -23,12 +23,7 @@ class Requester {
                     self.result = true
                     let json = JSON(value)
                     for (_, subJson) in json["list"] {
-                        if let id = subJson["id"].string, let title = subJson["title"].string, let geocoordinates = subJson["geocoordinates"].string {
-                            let point: PointOfInterest = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates)
-                            pointList.append(point)
-                        } else {
-                            self.result = false
-                        }
+                        pointList.append(PointOfInterest(json: subJson))
                     }
                 
                 case .failure(_):
@@ -46,13 +41,8 @@ class Requester {
             switch response.result {
             case .success(let value):
                 self.result = true
-                let json = JSON(value)
-                
-                if let id = json["id"].string, let title = json["title"].string, let geocoordinates = json["geocoordinates"].string, let address = json["address"].string, let transport = json["transport"].string, let email = json["email"].string, let description = json["description"].string, let phone = json["phone"].string {
-                    point = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates, address: address, transport: transport, email: email, description: description, phone: phone)
-                } else {
-                    self.result = false
-                }
+                let jsonRecieved = JSON(value)
+                point = PointOfInterest(json: jsonRecieved)
                 
             case .failure(_):
                 self.result = false
@@ -60,6 +50,18 @@ class Requester {
             completion(self.result, point)
         }
         
+    }
+    
+    func requestApi(url: URL) {
+        Alamofire.request(url).validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                print("Validation Successful")
+                print(response.result.value ?? "empty")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }

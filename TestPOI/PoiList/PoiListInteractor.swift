@@ -16,6 +16,7 @@ protocol PoiListRequestHandler: class
     // func requestUser(id:String)
     
     func requestItems()
+    func filterItems(_ searchText: String, _ model: PoiListViewModel)
 }
 
 class PoiListInteractor: PoiListRequestHandler
@@ -45,6 +46,15 @@ class PoiListInteractor: PoiListRequestHandler
                 }
             }
         }
+    }
+    //guardar llista poi a interactor
+    func filterItems(_ searchText: String, _ model: PoiListViewModel) {
+        var filteredPoi = [PoiListCellViewModel]()
+        filteredPoi = model.items.filter({( point : PoiListCellViewModel) -> Bool in
+            return point.title.lowercased().contains(searchText.lowercased())
+        })
+        print("interactor -> count filteredPoi: \(filteredPoi.count)")
+        self.presenter?.itemsFilteringDidFinish(filteredPoi)
     }
     
     //MARK: Interactor Private
