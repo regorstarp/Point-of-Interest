@@ -32,7 +32,7 @@ protocol PoiListResponseHandler: class
     
     func itemsRequestDidStart()
     func itemsRequestDidFinish( _ result: [PointOfInterest])
-    func itemsFilteringDidFinish(_ result: [PoiListCellViewModel])
+    func itemsFilteringDidFinish(_ result: [PointOfInterest])
 }
 
 class PoiListPresenter: PoiListEventHandler, PoiListResponseHandler
@@ -74,8 +74,6 @@ class PoiListPresenter: PoiListEventHandler, PoiListResponseHandler
             guard let strongSelf = self, let viewModel = item.value as? PoiListCellViewModel else {
                 return
             }
-            
-            print("ListItemViewModel pressed: \(viewModel.title)")
             strongSelf.wireframe.pushPoiDetailView(viewModel.id)
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -123,17 +121,24 @@ class PoiListPresenter: PoiListEventHandler, PoiListResponseHandler
     
     
     func viewDidRequestFilter(_ text: String) {
-        print("presenter request filter with viewmodel count = \(viewModel.items.count)")
-        self.interactor.filterItems(text, viewModel)
+        if text == "" {
+            updateDataSource(viewModel.items)
+        } else {
+            self.interactor.filterItems(text)
+        }
+        
     }
     
-    func itemsFilteringDidFinish(_ result: [PoiListCellViewModel]) {
-        
+    func updateDataSource(_ list: [PoiListCellViewModel]) {
         self.dataSource.removeAll()
-        let rows = result.map { (result) -> DataSourceItem in
+        let rows = list.map { (result) -> DataSourceItem in
             return DataSourceItem(result, result.title)
         }
         self.dataSource.addItems(rows)
+    }
+    
+    func itemsFilteringDidFinish(_ result: [PointOfInterest]) {
+        updateDataSource(result.map(PoiToItemListCellViewModelMapping))
     }
     
     //MARK: Private

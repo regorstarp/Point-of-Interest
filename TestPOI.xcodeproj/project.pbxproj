@@ -19,7 +19,6 @@
 		322C67B620160409002982B2 /* POIDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C67B520160409002982B2 /* POIDetailedViewController.swift */; };
 		322C67C620172950002982B2 /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C67C520172950002982B2 /* Requester.swift */; };
 		3286AF1320285B7800DBF63B /* mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286AF1220285B7800DBF63B /* mapper.swift */; };
-		3286B819202C5EE800E6027E /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286B818202C5EE800E6027E /* Endpoint.swift */; };
 		328A89D72015D78800B7A8D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A89D62015D78800B7A8D7 /* AppDelegate.swift */; };
 		328A89DC2015D78800B7A8D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328A89DA2015D78800B7A8D7 /* Main.storyboard */; };
 		328A89DE2015D78800B7A8D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328A89DD2015D78800B7A8D7 /* Assets.xcassets */; };
@@ -47,7 +46,6 @@
 		322C67B520160409002982B2 /* POIDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIDetailedViewController.swift; sourceTree = "<group>"; };
 		322C67C520172950002982B2 /* Requester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
 		3286AF1220285B7800DBF63B /* mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapper.swift; sourceTree = "<group>"; };
-		3286B818202C5EE800E6027E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		328A89D32015D78800B7A8D7 /* TestPOI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPOI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		328A89D62015D78800B7A8D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		328A89DB2015D78800B7A8D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 				328A89DD2015D78800B7A8D7 /* Assets.xcassets */,
 				328A89E22015D78800B7A8D7 /* Info.plist */,
 				32F9BDB520284E99006A9A46 /* PoiList */,
-				3286B818202C5EE800E6027E /* Endpoint.swift */,
 			);
 			path = TestPOI;
 			sourceTree = "<group>";
@@ -352,7 +349,6 @@
 				321C352320285FDF0040A096 /* PoiDetailViewModel.swift in Sources */,
 				321C351E20285FDF0040A096 /* PoiDetailBuilder.swift in Sources */,
 				322C67B620160409002982B2 /* POIDetailedViewController.swift in Sources */,
-				3286B819202C5EE800E6027E /* Endpoint.swift in Sources */,
 				321C352020285FDF0040A096 /* PoiDetailPresenter.swift in Sources */,
 				32F9BDCF20285328006A9A46 /* PoiListPresenter.swift in Sources */,
 				3286AF1320285B7800DBF63B /* mapper.swift in Sources */,

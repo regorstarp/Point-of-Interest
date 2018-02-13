@@ -52,16 +52,4 @@ class Requester {
         
     }
     
-    func requestApi(url: URL) {
-        Alamofire.request(url).validate().responseJSON { response in
-            switch response.result {
-            case .success:
-                print("Validation Successful")
-                print(response.result.value ?? "empty")
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
 }

@@ -16,7 +16,7 @@ protocol PoiListRequestHandler: class
     // func requestUser(id:String)
     
     func requestItems()
-    func filterItems(_ searchText: String, _ model: PoiListViewModel)
+    func filterItems(_ searchText: String)
 }
 
 class PoiListInteractor: PoiListRequestHandler
@@ -25,7 +25,8 @@ class PoiListInteractor: PoiListRequestHandler
     weak var presenter: PoiListResponseHandler?
     
     //MARK: Private vars
-    
+    private var poiList = [PointOfInterest]()
+    private var filteredPoiList = [PointOfInterest]()
     private var isRequestingItems = false
     private var requester = Requester()
     //MARK: Interactor Interface
@@ -40,6 +41,7 @@ class PoiListInteractor: PoiListRequestHandler
                     self.requester.requestPointsOfInterest { (result: Bool, list: [PointOfInterest]) in
                         if result {
                             self.isRequestingItems = false
+                            self.poiList = list
                             self.presenter?.itemsRequestDidFinish(list)
                         }
                     }
@@ -48,12 +50,11 @@ class PoiListInteractor: PoiListRequestHandler
         }
     }
     //guardar llista poi a interactor
-    func filterItems(_ searchText: String, _ model: PoiListViewModel) {
-        var filteredPoi = [PoiListCellViewModel]()
-        filteredPoi = model.items.filter({( point : PoiListCellViewModel) -> Bool in
+    func filterItems(_ searchText: String) {
+        var filteredPoi = [PointOfInterest]()
+        filteredPoi = poiList.filter({( point : PointOfInterest) -> Bool in
             return point.title.lowercased().contains(searchText.lowercased())
         })
-        print("interactor -> count filteredPoi: \(filteredPoi.count)")
         self.presenter?.itemsFilteringDidFinish(filteredPoi)
     }
     
