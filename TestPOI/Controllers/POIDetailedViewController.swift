@@ -12,7 +12,7 @@ import MapKit
 class POIDetailViewController: UIViewController {
 
 
-    var selectedPOI: PointOfInterest?
+    var selectedPOI: PointDetail?
     let regionRadius: CLLocationDistance = 1000
     let newPin = MKPointAnnotation()
     
@@ -34,51 +34,44 @@ class POIDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
+        title = selectedPOI?.title
         
-        if let point = selectedPOI {
-            title = point.title
-            
-            descriptionTextView.isEditable = false
-            descriptionTextView.isScrollEnabled = false
-            
-            descriptionLabel.text = "Description"
-            mailLabel.text = "Mail"
-            phoneLabel.text = "Phone"
-            addressLabel.text = "Address"
-            transportLabel.text = "Transport"
-            descriptionTextView.text = point.description
-            mailContentLabel.text = point.email
-            phoneContentLabel.text = point.phone
-            addressContentLabel.text = point.address
-            transportContentLabel.text = point.transport
-            
-            
-            // map set up
-            let coordinatesArray = point.geocoordinates.components(separatedBy: ",")
-            let latitude = (coordinatesArray[0] as NSString).doubleValue
-            let longitude = (coordinatesArray[1] as NSString).doubleValue
-            // set initial location
-            let initialLocation = CLLocation(latitude: latitude, longitude: longitude)
-            centerMapOnLocation(location: initialLocation)
-            newPin.coordinate = initialLocation.coordinate
-            mapView.addAnnotation(newPin)
-
-        } else {
-            
-            let alert = UIAlertController(title: "Couldn't load the selected point", message: "", preferredStyle: .alert)
-            
-            let acceptAction = UIAlertAction(title: "Go Back", style: .default) { (_) -> Void in
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-            alert.addAction(acceptAction)
-            self.present(alert, animated: true)
-        }
+        descriptionTextView.isEditable = false
+        descriptionTextView.isScrollEnabled = false
+        
+        setupInformation()
+        setupMapView()
+    }
+    
+    private func setupInformation() {
+        descriptionLabel.text = "Description"
+        mailLabel.text = "Mail"
+        phoneLabel.text = "Phone"
+        addressLabel.text = "Address"
+        transportLabel.text = "Transport"
+        descriptionTextView.text = selectedPOI?.description
+        mailContentLabel.text = selectedPOI?.email
+        phoneContentLabel.text = selectedPOI?.phone
+        addressContentLabel.text = selectedPOI?.address
+        transportContentLabel.text = selectedPOI?.transport
+    }
+    
+    private func setupMapView() {
+        // map set up
+        guard let coordinatesArray = selectedPOI?.geocoordinates.components(separatedBy: ",") else { return }
+        let latitude = (coordinatesArray[0] as NSString).doubleValue
+        let longitude = (coordinatesArray[1] as NSString).doubleValue
+        // set initial location
+        let initialLocation = CLLocation(latitude: latitude, longitude: longitude)
+        centerMapOnLocation(location: initialLocation)
+        newPin.coordinate = initialLocation.coordinate
+        mapView.addAnnotation(newPin)
     }
     
     
     func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-                                                                  regionRadius, regionRadius)
+        let coordinateRegion = MKCoordinateRegion.init(center: location.coordinate,
+                                                                  latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
 

@@ -6,7 +6,5 @@ target 'TestPOI' do
   use_frameworks!
 
   # Pods for TestPOI
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
   pod 'MBProgressHUD'
 end

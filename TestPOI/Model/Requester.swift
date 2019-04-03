@@ -7,59 +7,52 @@
 //
 
 import Foundation
-import Alamofire
-import SwiftyJSON
 
 class Requester {
     
     let url = "https://t21services.herokuapp.com/points"
-    var result: Bool = false
     
-    func requestPointsOfInterest( completion: @escaping (Bool, [PointOfInterest]) -> ()) -> Void {
-        var pointList = [PointOfInterest]()
-        Alamofire.request(url).responseJSON { response in
-            switch response.result {
-                case .success(let value):
-                    self.result = true
-                    let json = JSON(value)
-                    for (_, subJson) in json["list"] {
-                        if let id = subJson["id"].string, let title = subJson["title"].string, let geocoordinates = subJson["geocoordinates"].string {
-                            let point: PointOfInterest = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates)
-                            pointList.append(point)
-                        } else {
-                            self.result = false
-                        }
-                    }
-                
-                case .failure(_):
-                    self.result = false
-                }
-            completion(self.result, pointList)
-        }
+    func fetchPointsOfInterestJSON(completion: @escaping (Result<[Point], Error>) -> ()) {
+        let urlString = "https://t21services.herokuapp.com/points"
+        guard let url = URL(string: urlString) else { return }
         
-    }
-    
-    func requestPointOfInterest(id: String, completion: @escaping (Bool, PointOfInterest) -> ()) -> Void {
-        
-        Alamofire.request(url + "/\(id)").responseJSON { response in
-            var point: PointOfInterest = PointOfInterest(id: "", title: "", geocoordinates: "")
-            switch response.result {
-            case .success(let value):
-                self.result = true
-                let json = JSON(value)
-                
-                if let id = json["id"].string, let title = json["title"].string, let geocoordinates = json["geocoordinates"].string, let address = json["address"].string, let transport = json["transport"].string, let email = json["email"].string, let description = json["description"].string, let phone = json["phone"].string {
-                    point = PointOfInterest(id: id, title: title, geocoordinates: geocoordinates, address: address, transport: transport, email: email, description: description, phone: phone)
-                } else {
-                    self.result = false
-                }
-                
-            case .failure(_):
-                self.result = false
+        URLSession.shared.dataTask(with: url) { (data, urlResponse, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+                return
             }
-            completion(self.result, point)
-        }
+            
+            //success
+            do {
+                let root = try JSONDecoder().decode(Root.self, from: data!)
+                completion(.success(root.list))
         
+            } catch let jsonError {
+                completion(.failure(jsonError))
+            }
+        }.resume()
     }
     
+    func requestPointOfInterest(for pointId: String, completion: @escaping (Result<PointDetail, Error>) -> () ) {
+        let urlString = "https://t21services.herokuapp.com/points" + "/\(pointId)"
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, urlResponse, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            //success
+            do {
+                let pointDetail = try JSONDecoder().decode(PointDetail.self, from: data!)
+                completion(.success(pointDetail))
+                
+            } catch let jsonError {
+                completion(.failure(jsonError))
+            }
+            }.resume()
+    }
 }
