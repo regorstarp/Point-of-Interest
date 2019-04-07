@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Point: Decodable {
+struct PointOfInterest: Decodable, Equatable {
     let id: String
     let title: String
     let geocoordinates: String
 }
 
-struct PointDetail: Decodable {
+struct PointDetail: Codable, Equatable {
     var id: String
     var title: String
     var geocoordinates: String
@@ -26,5 +26,5 @@ struct PointDetail: Decodable {
 }
 
 struct Root: Decodable {
-    let list: [Point]
+    let list: [PointOfInterest]
 }

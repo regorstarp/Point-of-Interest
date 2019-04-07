@@ -12,11 +12,11 @@ import MBProgressHUD
 class POIListTableViewController: UITableViewController {
     
     var requester: Requester = Requester()
-    var poiList = [Point]()
+    var poiList = [PointOfInterest]()
     var result: Bool = false
     var selectedPoint: PointOfInterest?
     let searchController = UISearchController(searchResultsController: nil)
-    var filteredPoi = [Point]()
+    var filteredPoi = [PointOfInterest]()
     
     
     override func viewDidLoad() {
@@ -133,7 +133,7 @@ class POIListTableViewController: UITableViewController {
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredPoi = poiList.filter({( point : Point) -> Bool in
+        filteredPoi = poiList.filter({( point : PointOfInterest) -> Bool in
             return point.title.lowercased().contains(searchText.lowercased())
         })
         

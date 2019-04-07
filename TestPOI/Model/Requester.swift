@@ -10,24 +10,18 @@ import Foundation
 
 class Requester {
     
-    let url = "https://t21services.herokuapp.com/points"
-    
-    func fetchPointsOfInterestJSON(completion: @escaping (Result<[Point], Error>) -> ()) {
-        let urlString = "https://t21services.herokuapp.com/points"
-        guard let url = URL(string: urlString) else { return }
+    func fetchPointsOfInterestJSON(completion: @escaping (Result<[PointOfInterest], Error>) -> ()) {
+        let request = PointsOfInterestRequest()
         
+        let url = URL(string: "https://t21services.herokuapp.com/points")!
         URLSession.shared.dataTask(with: url) { (data, urlResponse, error) in
             
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
+            guard let data = data else { return completion(.failure(error!)) }
             
-            //success
             do {
-                let root = try JSONDecoder().decode(Root.self, from: data!)
-                completion(.success(root.list))
-        
+                let parsedResponse = try request.parseResponse(data: data)
+                completion(.success(parsedResponse))
+                
             } catch let jsonError {
                 completion(.failure(jsonError))
             }
@@ -35,24 +29,44 @@ class Requester {
     }
     
     func requestPointOfInterest(for pointId: String, completion: @escaping (Result<PointDetail, Error>) -> () ) {
-        let urlString = "https://t21services.herokuapp.com/points" + "/\(pointId)"
-        guard let url = URL(string: urlString) else { return }
+        let request = PointOfInterestRequest()
         
-        URLSession.shared.dataTask(with: url) { (data, urlResponse, error) in
-            
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            //success
-            do {
-                let pointDetail = try JSONDecoder().decode(PointDetail.self, from: data!)
-                completion(.success(pointDetail))
+        do {
+            let url = try request.makeRequest(from: pointId)
+            URLSession.shared.dataTask(with: url) { (data, urlResponse, error) in
                 
-            } catch let jsonError {
-                completion(.failure(jsonError))
-            }
+                guard let data = data else { return completion(.failure(error!)) }
+                
+                do {
+                    let parsedResponse = try request.parseResponse(data: data)
+                    completion(.success(parsedResponse))
+                    
+                } catch let jsonError {
+                    completion(.failure(jsonError))
+                }
             }.resume()
+        } catch let urlError { completion(.failure(urlError)) }
     }
 }
+
+struct PointOfInterestRequest: APIRequest {
+    func makeRequest(from pointId: String) throws -> URLRequest {
+        let urlString = "https://t21services.herokuapp.com/points" + "/\(pointId)"
+        let url = URL(string: urlString)!
+        return URLRequest(url: url)
+    }
+    
+    func parseResponse(data: Data) throws -> PointDetail {
+        return try JSONDecoder().decode(PointDetail.self, from: data)
+    }
+}
+
+struct PointsOfInterestRequest {
+    
+    func parseResponse(data: Data) throws -> [PointOfInterest] {
+        let root = try JSONDecoder().decode(Root.self, from: data)
+        return root.list
+    }
+}
+
+
